@@ -7,7 +7,12 @@
     "Vasileios Mitsaras"
   ],
   "ignore": [
-    "**/.*"
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "package.json"
   ],
   "keywords": [
     "utilities"

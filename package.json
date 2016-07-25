@@ -1,10 +1,17 @@
 {
-  "name": "js-utils",
+  "name": "js-utilities",
   "title": "js-utils",
   "main": "utils.js",
   "description": "js-Utilities: a11yclick,keyCodes,getMetaOptions,onEndTransition,onEndAnimation",
   "version": "0.1.0",
   "homepage": "https://github.com/vmitsaras/js-utils",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vmitsaras/js-utils"
+  },
+  "bugs": {
+    "url": "https://github.com/vmitsaras/js-utils/issues"
+  },
   "license": "MIT",
   "author": {
     "name": "Vasileios Mitsaras",
