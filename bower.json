@@ -1,0 +1,17 @@
+{
+  "name": "js-utils",
+  "version": "0.1.0",
+  "main": [
+    "utils.js"
+  ],
+  "authors": [
+    "Vasileios Mitsaras"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "keywords": [
+    "utilities"
+  ],
+  "license": "MIT"
+}
