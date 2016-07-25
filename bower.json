@@ -1,6 +1,5 @@
 {
   "name": "js-utilities",
-  "version": "0.1.0",
   "main": [
     "utils.js"
   ],
