@@ -109,6 +109,13 @@
 		return cl + utils.classes.modifier + modifier
 	};
 
+	utils.cssModifiers = function( modifiers, cssClasses, baseClass ){
+		var arr = modifiers.split(",");
+		for(var i=0, l = arr.length; i < l; i++){
+			cssClasses.push( utils.createModifierClass(baseClass,arr[i]) );
+		}
+	};
+
 	utils.getMetaOptions = function( el, name, metadata ){
 		var dataAttr = 'data-' + name;
 		var dataOptionsAttr = dataAttr + '-options';
