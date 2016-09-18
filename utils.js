@@ -13,6 +13,7 @@
 		isOpen: "is-open",
 		isClicked: "is-clicked",
 		isAnimating: "is-animating",
+		isVisible: "is-visible",
 		hidden: "u-hidden"
 	};
 
@@ -52,6 +53,15 @@
 		} else {
 			return false;
 		}
+	};
+	utils.a11yclickBind = function(el, callback,name) {
+		el.on("click." + name + " keydown." + name,function(event){
+			if ( w.utils.a11yclick(event)) {
+				event.preventDefault(event);
+				if( callback && typeof callback === 'function' ) { callback.call(); }
+				el.trigger('clicked.'+name);
+			}
+		});
 	};
 
 	utils.doc = w.document;
