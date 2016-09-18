@@ -140,6 +140,18 @@
 			return;
 		}
 	};
+	// polyfill raf if needed
+	var raf = (function(callback){
+		return  window.requestAnimationFrame       ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame    ||
+			function( callback ){
+				window.setTimeout(callback, 1000 / 60);
+			};
+	})();
+	utils.raf = function(callback){
+		raf(callback);
+	};
 
 	// expose global utils
 	w.utils = utils;
