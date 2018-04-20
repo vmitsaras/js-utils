@@ -1,9 +1,8 @@
 /* global jQuery:true */
-/* global Modernizr:true */
-;(function( w ){
+;(function( window ){
 	"use strict";
 
-	var utils = {};
+	var utils = window.utils || {};
 
 	utils.classes = {
 		hiddenVisually: "u-hidden-visually",
@@ -54,9 +53,10 @@
 			return false;
 		}
 	};
-	utils.a11yclickBind = function(el, callback,name) {
+
+	utils.a11yclickBind = function(el, callback, name) {
 		el.on("click." + name + " keydown." + name,function(event){
-			if ( w.utils.a11yclick(event)) {
+			if ( utils.a11yclick(event)) {
 				event.preventDefault(event);
 				if( callback && typeof callback === 'function' ) { callback.call(); }
 				el.trigger('clicked.'+name);
@@ -64,24 +64,24 @@
 		});
 	};
 
-	utils.doc = w.document;
-	utils.supportTransition = Modernizr.csstransitions;
-	utils.supportAnimations = Modernizr.cssanimations;
-	utils.transEndEventNames = {
-		'WebkitTransition'	: 'webkitTransitionEnd',
-		'MozTransition'		: 'transitionend',
-		'OTransition'		: 'oTransitionEnd',
-		'msTransition'		: 'MSTransitionEnd',
-		'transition'		: 'transitionend'
+	utils.supportTransition = ('transition' in document.documentElement.style) || ('WebkitTransition' in document.documentElement.style);
+
+	utils.whichTransitionEvent = function () {
+		var el = document.createElement('fakeelement');
+		var transitions = {
+			'transition': 'transitionend',
+			'OTransition': 'oTransitionEnd',
+			'WebkitTransition': 'webkitTransitionEnd'
+		}
+
+		for (var t in transitions) {
+			if (el.style[t] !== undefined) {
+				return transitions[t];
+			}
+		}
 	};
-	utils.animEndEventNames = {
-		'WebkitAnimation' : 'webkitAnimationEnd',
-		'OAnimation' : 'oAnimationEnd',
-		'msAnimation' : 'MSAnimationEnd',
-		'animation' : 'animationend'
-	};
-	utils.transEndEventName = utils.transEndEventNames[Modernizr.prefixed('transition')];
-	utils.animEndEventName = utils.animEndEventNames[Modernizr.prefixed('animation')];
+
+	utils.transEndEventName = utils.whichTransitionEvent();
 
 	utils.onEndTransition = function( el, callback ) {
 		var onEndCallbackFn = function( ev ) {
@@ -93,22 +93,6 @@
 		};
 		if( utils.supportTransition ) {
 			el.addEventListener( utils.transEndEventName, onEndCallbackFn );
-		}
-		else {
-			onEndCallbackFn();
-		}
-	};
-
-	utils.onEndAnimation = function( el, callback ) {
-		var onEndCallbackFn = function( ev ) {
-			if( utils.supportAnimations ) {
-				if( ev.target != this ) return;
-				this.removeEventListener( utils.animEndEventName, onEndCallbackFn );
-			}
-			if( callback && typeof callback === 'function' ) { callback.call(); }
-		};
-		if( utils.supportAnimations ) {
-			el.addEventListener( utils.animEndEventName, onEndCallbackFn );
 		}
 		else {
 			onEndCallbackFn();
@@ -140,21 +124,8 @@
 			return;
 		}
 	};
-	// polyfill raf if needed
-	var raf = (function(callback){
-		return  window.requestAnimationFrame       ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame    ||
-			function( callback ){
-				window.setTimeout(callback, 1000 / 60);
-			};
-	})();
-	utils.raf = function(callback){
-		raf(callback);
-	};
 
-	// expose global utils
-	w.utils = utils;
+	window.utils = utils;
 
 })(this);
 
