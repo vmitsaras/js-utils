@@ -35,10 +35,6 @@
 		UP: 38
 	};
 
-	/**
-	 * a11yclick
-	 * Slightly modified from: http://www.karlgroves.com/2014/11/24/ridiculously-easy-trick-for-keyboard-accessibility/
-	 */
 	utils.a11yclick = function(event) {
 		var code = event.charCode || event.keyCode,
 			type = event.type;
@@ -67,12 +63,12 @@
 	utils.supportTransition = ('transition' in document.documentElement.style) || ('WebkitTransition' in document.documentElement.style);
 
 	utils.whichTransitionEvent = function () {
-		var el = document.createElement('fakeelement');
-		var transitions = {
-			'transition': 'transitionend',
-			'OTransition': 'oTransitionEnd',
-			'WebkitTransition': 'webkitTransitionEnd'
-		}
+		var el = document.createElement('fakeelement'),
+			transitions = {
+				'transition': 'transitionend',
+				'OTransition': 'oTransitionEnd',
+				'WebkitTransition': 'webkitTransitionEnd'
+			};
 
 		for (var t in transitions) {
 			if (el.style[t] !== undefined) {
@@ -111,9 +107,9 @@
 	};
 
 	utils.getMetaOptions = function( el, name, metadata ){
-		var dataAttr = 'data-' + name;
-		var dataOptionsAttr = dataAttr + '-options';
-		var attr = el.getAttribute( dataAttr ) || el.getAttribute( dataOptionsAttr );
+		var dataAttr = 'data-' + name,
+			dataOptionsAttr = dataAttr + '-options',
+			attr = el.getAttribute( dataAttr ) || el.getAttribute( dataOptionsAttr );
 		try {
 			return attr && JSON.parse( attr ) || {};
 		} catch ( error ) {
