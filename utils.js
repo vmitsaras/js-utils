@@ -66,7 +66,6 @@
 		var el = document.createElement('fakeelement'),
 			transitions = {
 				'transition': 'transitionend',
-				'OTransition': 'oTransitionEnd',
 				'WebkitTransition': 'webkitTransitionEnd'
 			};
 
