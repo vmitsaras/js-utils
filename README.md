@@ -3,8 +3,7 @@
 * CSS Classes
 * keyCodes
 * a11yclick
-* onEndTransition
-* onEndAnimation
+* onEndTransition 
 * createModifierClass
 * getMetaOptions
 
@@ -12,6 +11,4 @@
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
-## Release History
 
-* `v0.1.0`: Initial release.

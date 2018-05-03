@@ -2,8 +2,8 @@
   "name": "js-utilities",
   "title": "js-utils",
   "main": "utils.js",
-  "description": "js-Utilities: a11yclick,keyCodes,getMetaOptions,onEndTransition,onEndAnimation",
-  "version": "1.0.0",
+  "description": "js-Utilities: a11yclick,keyCodes,getMetaOptions,onEndTransition",
+  "version": "1.0.1",
   "homepage": "https://github.com/vmitsaras/js-utils",
   "repository": {
     "type": "git",
